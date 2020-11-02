@@ -11,6 +11,16 @@ H5平台登陆注意事项：
 - 微信内嵌浏览器运行H5版时，可通过js sdk实现微信登陆，需要引入一个单独的js，[详见](https://ask.dcloud.net.cn/article/35380)
 - 普通浏览器上实现微信登陆，并非开放API，需要向微信申请，仅个别开发者有此权限
 - H5平台的其他登陆，比如QQ登陆、微博登陆，uni-app未封装，请在条件编译里按普通H5写法编写。
+支付宝等小程序登录需要按钮触发才可以吊起登录
+  -<button open-type="getAuthorize" class="getUserInfo" @getAuthorize="onGetAuthorize" scope="userInfo" withCredentials="true">登录/注册</button>
+  @getAuthorize="onGetAuthorize"这个是吊起登录确认点击同意授权信息后会回调onGetAuthorize方法然后在写
+  --my.getOpenUserInfo({
+			fail: res => {},
+			success: res => {
+					// console.log(res);
+					let userInfo = JSON.parse(res.response).response; // 以下方的报文格式解析两层 response
+			}
+		});
 
 **OBJECT 参数说明**
 
